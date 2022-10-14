@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:30a7bccb9e47f4a3e16367db1d291f75:792cd03d2792dee8f8a3e21920ae37d5:c6458eeb82e2571192616a8dd87f0b54$ -->
+<TextureAtlas imagePath="ZombieMale.png">
+    <SubTexture name="atk/CharZombie01N0017" x="2" y="2" width="16" height="29" frameX="-3" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01N0018" x="20" y="2" width="16" height="31" frameX="-3" frameY="0" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01N0019" x="38" y="2" width="16" height="27" frameX="-3" frameY="-4" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01N0020" x="56" y="2" width="16" height="29" frameX="-3" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01S0017" x="74" y="2" width="16" height="29" frameX="-1" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01S0018" x="92" y="2" width="16" height="31" frameX="-1" frameY="0" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01S0019" x="110" y="2" width="16" height="27" frameX="0" frameY="-4" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01S0020" x="2" y="35" width="16" height="29" frameX="0" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01W0017" x="20" y="35" width="16" height="29" frameX="-1" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01W0018" x="38" y="35" width="16" height="31" frameX="-1" frameY="0" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01W0019" x="56" y="35" width="16" height="27" frameX="0" frameY="-4" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="atk/CharZombie01W0020" x="74" y="35" width="14" height="27" frameX="-2" frameY="-4" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01N0025" x="90" y="35" width="18" height="29" frameX="0" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01N0026" x="110" y="35" width="16" height="27" frameX="-2" frameY="-4" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01N0027" x="2" y="68" width="20" height="23" frameX="0" frameY="-8" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01N0028" x="24" y="68" width="14" height="7" frameX="-4" frameY="-24" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01S0025" x="40" y="68" width="16" height="29" frameX="-1" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01S0026" x="58" y="68" width="16" height="25" frameX="-1" frameY="-6" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01S0027" x="76" y="68" width="18" height="21" frameX="0" frameY="-10" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01S0028" x="24" y="68" width="14" height="7" frameX="-2" frameY="-24" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01W0025" x="96" y="68" width="18" height="29" frameX="-1" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01W0026" x="2" y="99" width="16" height="27" frameX="-1" frameY="-4" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01W0027" x="20" y="99" width="20" height="23" frameX="0" frameY="-8" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="dead/CharZombie01W0028" x="24" y="68" width="14" height="7" frameX="-2" frameY="-24" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01N0001" x="42" y="99" width="14" height="29" frameX="-4" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01N0002" x="58" y="99" width="14" height="29" frameX="-4" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01N0003" x="42" y="99" width="14" height="29" frameX="-4" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01N0004" x="58" y="99" width="14" height="29" frameX="-4" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01S0001" x="74" y="99" width="14" height="29" frameX="-2" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01S0002" x="90" y="99" width="14" height="29" frameX="-2" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01S0003" x="74" y="99" width="14" height="29" frameX="-2" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01S0004" x="90" y="99" width="14" height="29" frameX="-2" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01W0001" x="106" y="99" width="14" height="29" frameX="-2" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01W0002" x="2" y="130" width="14" height="29" frameX="-2" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01W0003" x="106" y="99" width="14" height="29" frameX="-2" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="idle/CharZombie01W0004" x="2" y="130" width="14" height="29" frameX="-2" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01N0005" x="42" y="99" width="14" height="29" frameX="-4" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01N0006" x="18" y="130" width="14" height="31" frameX="-4" frameY="0" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01N0007" x="42" y="99" width="14" height="29" frameX="-4" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01N0008" x="34" y="130" width="14" height="31" frameX="-4" frameY="0" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01S0005" x="50" y="130" width="14" height="29" frameX="-2" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01S0006" x="66" y="130" width="14" height="31" frameX="-2" frameY="0" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01S0007" x="50" y="130" width="14" height="29" frameX="-2" frameY="-2" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01S0008" x="82" y="130" width="14" height="31" frameX="-2" frameY="0" frameWidth="18" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01W0005" x="98" y="130" width="14" height="29" frameX="-2" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01W0006" x="2" y="163" width="14" height="31" frameX="-2" frameY="0" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01W0007" x="18" y="163" width="14" height="29" frameX="-2" frameY="-2" frameWidth="20" frameHeight="31"/>
+    <SubTexture name="walk/CharZombie01W0008" x="34" y="163" width="14" height="31" frameX="-2" frameY="0" frameWidth="20" frameHeight="31"/>
+</TextureAtlas>

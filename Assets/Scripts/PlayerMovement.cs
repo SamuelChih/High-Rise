@@ -6,22 +6,60 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpspeed;
+    [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D body;
+    private Animator anim;
+    private BoxCollider2D boxCollider;
+    
 
     private void Awake()
     {
+        // Grab references for rigidbody and animator from object
         body = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
     {
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed,body.velocity.y);
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-        if(Input.GetKey(KeyCode.Space))
+        body.velocity = new Vector2(horizontalInput * speed,body.velocity.y); // Gets x axis input from player
+
+
+    
+        if(horizontalInput < -0.01f) // If player is moving left, face left
         {
-            body.velocity = new Vector2(body.velocity.x, jumpspeed);
+            transform.localScale = Vector3.one;
+        }
+        else if(horizontalInput > 0.01f) // If player is facing right, face right
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
         }
 
+
+
+        if(Input.GetKey(KeyCode.Space) && isGrounded()) // Gets jump input from player
+        {
+            Jump();
+        }
+
+        //Set animator parameters
+        anim.SetBool("run", horizontalInput != 0);
+
     }
+
+    private void Jump()
+    {
+        body.velocity = new Vector2(body.velocity.x, jumpspeed);
+    }
+
+    private bool isGrounded()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.01f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
+    
 }
