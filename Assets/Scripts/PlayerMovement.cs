@@ -25,20 +25,16 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        body.velocity = new Vector2(horizontalInput * speed,body.velocity.y); // Gets x axis input from player
-
-
-    
-        if(horizontalInput < -0.01f) // If player is moving left, face left
+        if(horizontalInput < -0.01f && !isLeftWalled()) // If player is moving left, face left
         {
+            body.velocity = new Vector2(horizontalInput * speed,body.velocity.y); // Gets x axis input from player
             transform.localScale = Vector3.one;
         }
-        else if(horizontalInput > 0.01f) // If player is facing right, face right
+        else if(horizontalInput > 0.01f && !isRightWalled()) // If player is facing right, face right
         {
+            body.velocity = new Vector2(horizontalInput * speed,body.velocity.y); // Gets x axis input from player
             transform.localScale = new Vector3(-1, 1, 1);
         }
-
-
 
         if(Input.GetKey(KeyCode.Space) && isGrounded()) // Gets jump input from player
         {
@@ -47,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Set animator parameters
         anim.SetBool("run", horizontalInput != 0);
-
     }
 
     private void Jump()
@@ -61,5 +56,15 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    
+    private bool isLeftWalled()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.left, 0.01f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
+    private bool isRightWalled()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.right, 0.01f, groundLayer);
+        return raycastHit.collider != null;
+    }
 }
