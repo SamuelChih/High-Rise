@@ -66,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        body.velocity = new Vector2(body.velocity.x, jumpspeed);
         if(isGrounded())
         {
             body.velocity = new Vector2(body.velocity.x, jumpspeed);
@@ -77,11 +76,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if(horizontalInput == 0)
             {
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 1, 0);
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 4, 0);
                 transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
             else 
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 1, 0);
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 2, 4);
 
             wallJumpCooldown = 0;
         }
