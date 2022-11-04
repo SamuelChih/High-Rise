@@ -46,8 +46,23 @@ public class PlayerMovement : MonoBehaviour
 
         //Wall jump logic
         if (wallJumpCooldown > 0.2f)
+
+        if(horizontalInput < -0.01f && !isLeftWalled()) // If player is moving left, face left
+        {
+            body.velocity = new Vector2(horizontalInput * speed,body.velocity.y); // Gets x axis input from player
+            transform.localScale = Vector3.one;
+        }
+        else if(horizontalInput > 0.01f && !isRightWalled()) // If player is facing right, face right
+        {
+            body.velocity = new Vector2(horizontalInput * speed,body.velocity.y); // Gets x axis input from player
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        if(Input.GetKey(KeyCode.Space) && isGrounded()) // Gets jump input from player
+
         {
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+
 
             if (onWall() && !isGrounded())
             {
@@ -62,6 +77,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             wallJumpCooldown += Time.deltaTime;
+        //Set animator parameters
+        anim.SetBool("run", horizontalInput != 0);
+
     }
 
     private void Jump()
@@ -92,10 +110,24 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+
     private bool onWall()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
     }
     
+
+    private bool isLeftWalled()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.left, 0.01f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
+    private bool isRightWalled()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.right, 0.01f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
 }
