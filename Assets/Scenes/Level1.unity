@@ -1645,7 +1645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  jumpspeed: 8
+  jumpspeed: 4
+  gravityScale: 1
+  drag: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
