@@ -6,8 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpspeed;
+    [SerializeField] private float gravityScale;
+    [SerializeField] private float drag;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+
+
 
     private Rigidbody2D body;
     private Animator anim;
@@ -56,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
                 body.velocity = Vector2.zero;
             }
             else
-                body.gravityScale = 4;
+                body.gravityScale = gravityScale;
+                body.drag = drag;
 
             if (Input.GetKey(KeyCode.Space))
                 Jump();
@@ -71,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         {
             body.velocity = new Vector2(body.velocity.x, jumpspeed);
             // anim.SetTrigger("jump");
+           
         }
 
         else if(onWall() && !isGrounded())
