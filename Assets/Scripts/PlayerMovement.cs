@@ -10,19 +10,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float drag;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
-
-
+    [SerializeField] private StrengthBar strengthBar;
 
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
-    private float wallJumpCooldown;
     private float horizontalInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void Awake()
@@ -37,37 +35,37 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-
         //Flip player when moving left-right
 
-        if (horizontalInput < -0.01f) // If player is moving left, face left
+        if (horizontalInput < -0.01f && !onWall(Vector2.left)) // If player is moving left, face left
+        {
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
             transform.localScale = Vector3.one;
-        else if (horizontalInput > 0.01f) // If player is moving right, face right
+        }
+        else if (horizontalInput > 0.01f && !onWall(Vector2.right)) // If player is moving right, face right
+        {
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
             transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         //Set animator parameters
         anim.SetBool("run", horizontalInput != 0);
         // anim.SetBool("grounded", isGrounded());
 
         //Wall jump logic
-        if (wallJumpCooldown > 0.2f)
+        if (onWall(new Vector2(transform.localScale.x, 0)) && !isGrounded() && strengthBar.getTicOne())
         {
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
-            if (onWall() && !isGrounded())
-            {
-                body.gravityScale = 0;
-                body.velocity = Vector2.zero;
-            }
-            else
-                body.gravityScale = gravityScale;
-                body.drag = drag;
-
-            if (Input.GetKey(KeyCode.Space))
-                Jump();
+            body.gravityScale = 0;
+            body.velocity = Vector2.zero;
         }
         else
-            wallJumpCooldown += Time.deltaTime;
+        {
+            body.gravityScale = gravityScale;
+            // body.drag = drag;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            Jump();
     }
 
     private void Jump()
@@ -79,17 +77,19 @@ public class PlayerMovement : MonoBehaviour
            
         }
 
-        else if(onWall() && !isGrounded())
+        else if(onWall(new Vector2(transform.localScale.x, 0)) && !isGrounded() && strengthBar.getTicOne())
         {
+            body.gravityScale = gravityScale;
+
             if(horizontalInput == 0)
             {
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 4, 0);
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * jumpspeed, 0);
                 transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
             else 
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 2, 4);
-
-            wallJumpCooldown = 0;
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 2, jumpspeed);
+            
+            strengthBar.reset();
         }
     }
 
@@ -99,9 +99,9 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    private bool onWall()
+    private bool onWall(Vector2 xVec)
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, xVec, 0.1f, wallLayer);
         return raycastHit.collider != null;
     }
    

@@ -5,19 +5,27 @@ using UnityEngine.UI;
 
 public class StrengthBar : MonoBehaviour
 {
-    public Image StrengthBarMask;
-    public float maxStrength = 10;
-    public float barChangeSpeed = 1;
-    float currentStrength;
-    bool strengthBarOn;
-    bool isReleased;
+    [SerializeField] private Image StrengthBarMask;
+    [SerializeField] private float maxStrength;
+    [SerializeField] private float barChangeSpeed;
+    [SerializeField] private float coolDown;
+
+    private bool strengthBarOn;
+    private bool isReleased;
+    private bool ticOne;
+    private bool paused;
+    private float currentStrength;
+    private float wait;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentStrength = 0;
         strengthBarOn = true;
         isReleased = true;
+        ticOne = false;
+        paused = false;
+        currentStrength = 0;
+        wait = coolDown;
         StartCoroutine(UpdateStrengthBar());
     }
 
@@ -30,7 +38,20 @@ public class StrengthBar : MonoBehaviour
         }
         if (Input.GetKeyUp("f"))
         {
+            if (ticOne)
+            {
+                paused = true;
+                wait = 0;
+            }
             isReleased = true;
+        }
+        if (wait < coolDown)
+        {
+            wait += Time.deltaTime;
+            if (wait >= coolDown)
+            {
+                reset();
+            }
         }
     }
 
@@ -38,19 +59,40 @@ public class StrengthBar : MonoBehaviour
     {
         while (strengthBarOn)
         {
-            if (isReleased)
+            if (!paused)
             {
-                currentStrength = 0;
-                StrengthBarMask.fillAmount = 0;
-            }
-            else if (currentStrength < maxStrength)
-            {
-                currentStrength += barChangeSpeed;
-                float fill = currentStrength / maxStrength;
-                StrengthBarMask.fillAmount = fill;
+                if (isReleased)
+                {
+                    reset();
+                }
+                else if (currentStrength < maxStrength)
+                {
+                    currentStrength += barChangeSpeed;
+                    StrengthBarMask.fillAmount = getFill();
+                    if (getFill() > 0.5f) ticOne = true;
+                }
             }
             yield return new WaitForSeconds(0.02f);
         }
         yield return null;
+    }
+
+    private float getFill()
+    {
+        return currentStrength / maxStrength;
+    }
+
+    public bool getTicOne()
+    {
+        return ticOne;
+    }
+
+    public void reset()
+    {
+        currentStrength = 0;
+        StrengthBarMask.fillAmount = 0;
+        paused = false;
+        ticOne = false;
+        wait = coolDown;
     }
 }
