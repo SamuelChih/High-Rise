@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         // anim.SetBool("grounded", isGrounded());
 
         //Wall jump logic
-        if (onWall(new Vector2(transform.localScale.x, 0)) && !isGrounded() && strengthBar.getTicOne())
+        if ((onWall(Vector2.left) || onWall(Vector2.right)) && !isGrounded() && strengthBar.getTicOne())
         {
             body.gravityScale = 0;
             body.velocity = Vector2.zero;
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
            
         }
 
-        else if(onWall(new Vector2(transform.localScale.x, 0)) && !isGrounded() && strengthBar.getTicOne())
+        else if((onWall(Vector2.left) || onWall(Vector2.right)) && !isGrounded() && strengthBar.getTicOne())
         {
             body.gravityScale = gravityScale;
 
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
             else 
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 2, jumpspeed);
+                body.velocity = new Vector2(Mathf.Sign(transform.localScale.x) * 2, jumpspeed);
             
             strengthBar.reset();
         }
@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool onWall(Vector2 xVec)
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, xVec, 0.1f, wallLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, xVec, 0.01f, wallLayer);
         return raycastHit.collider != null;
     }
    
