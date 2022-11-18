@@ -32,11 +32,11 @@ public class StrengthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("f"))
+        if (Input.GetKey("j"))
         {
             isReleased = false;
         }
-        if (Input.GetKeyUp("f"))
+        if (Input.GetKeyUp("j"))
         {
             if (ticOne)
             {
