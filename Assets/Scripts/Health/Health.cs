@@ -29,7 +29,18 @@ public class Health : MonoBehaviour
             if (!dead)
             {
                 anim.SetTrigger("die");
-                GetComponent<PlayerMovement>().enabled = false;
+
+                //Player
+                if(GetComponent<PlayerMovement>() != null)
+                    GetComponent<PlayerMovement>().enabled = false;
+
+                //Civilian
+                if(GetComponentInParent<CivilianPatrol>() != null)
+                {   
+                    Destroy(gameObject.GetComponent<BoxCollider2D>());
+                    GetComponentInParent<CivilianPatrol>().enabled = false;
+                }
+
                 dead = true;
             }
         }

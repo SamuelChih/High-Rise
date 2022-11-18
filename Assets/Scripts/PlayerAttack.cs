@@ -3,6 +3,10 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
+    [SerializeField] private Transform swipePoint;
+    [SerializeField] private GameObject[] swipes;
+
+
     private Animator anim;
     private PlayerMovement playerMovement;
     private float cooldownTimer = Mathf.Infinity;
@@ -29,6 +33,9 @@ public class PlayerAttack : MonoBehaviour
     {
         anim.SetTrigger("attack");
         cooldownTimer = 0;
+
+        swipes[0].transform.position = swipePoint.position;
+        swipes[0].GetComponent<SwipeOfAttack>().SetDirection(Mathf.Sign(transform.localScale.x));
 
     }
     
