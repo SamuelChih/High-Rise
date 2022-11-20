@@ -34,11 +34,24 @@ public class Health : MonoBehaviour
                 if(GetComponent<PlayerMovement>() != null)
                     GetComponent<PlayerMovement>().enabled = false;
 
+
                 //Civilian
                 if(GetComponentInParent<CivilianPatrol>() != null)
                 {   
-                    Destroy(gameObject.GetComponent<BoxCollider2D>());
                     GetComponentInParent<CivilianPatrol>().enabled = false;
+                    Destroy(gameObject.GetComponent<BoxCollider2D>());    
+                }
+
+                //Cop
+                if(GetComponentInParent<CopEnemyPatrol>() != null)
+                {
+                    GetComponentInParent<CopEnemyPatrol>().enabled = false;
+                    Destroy(gameObject.GetComponent<BoxCollider2D>());
+                }
+
+                if(GetComponent<CopEnemy>() != null)
+                {
+                    GetComponent<CopEnemy>().enabled = false;
                 }
 
                 dead = true;
