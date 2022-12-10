@@ -1,18 +1,27 @@
 using UnityEngine;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
+    [SerializeField] private float healingSpeed;
     public float currentHealth { get; private set; }
+
     private Animator anim;
+    // private PlayerMovement playerMovement;
+    // private PlayerAttack playerAttack;
+    // private Health playerHealth;
+    private bool isHealing;
     private bool dead;
 
     private void Awake() 
     {
-        
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
-        
+        isHealing = false;
+        // playerMovement = GetComponent<PlayerMovement>();
+        // playerAttack = GetComponent<PlayerAttack>();
+        // playerHealth = GetComponent<Health>();
     }
 
     public void TakeDamage(float _damage)
@@ -59,9 +68,38 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Update() {
-       if (Input.GetKeyDown(KeyCode.E))
-       TakeDamage(1); 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && GetComponent<PlayerMovement>() != null)
+            TakeDamage(1);
+    }
+
+    public void StartHealing()
+    {
+        if (!isHealing && currentHealth < startingHealth)
+        {
+            isHealing = true;
+            float end = currentHealth + 1.0f;
+            StartCoroutine(Heal(end));
+        }
+    }
+
+    IEnumerator Heal(float end)
+    {
+        if(GetComponent<PlayerMovement>() != null)
+            GetComponent<PlayerMovement>().enabled = false;
+        if(GetComponent<PlayerAttack>() != null)
+            GetComponent<PlayerAttack>().enabled = false;
+        while (currentHealth < end)
+        {
+            currentHealth = Mathf.Clamp(currentHealth + healingSpeed, 0 , end);
+            yield return new WaitForSeconds(0.1f);
+        }
+        if(GetComponent<PlayerMovement>() != null)
+            GetComponent<PlayerMovement>().enabled = true;
+        if(GetComponent<PlayerAttack>() != null)
+            GetComponent<PlayerAttack>().enabled = true;
+        isHealing = false;
     }
 
     

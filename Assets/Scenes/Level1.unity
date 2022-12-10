@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  healingSpeed: 0
 --- !u!61 &48790677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -888,6 +889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  healingSpeed: 0
 --- !u!61 &93603265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3515,6 +3517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  playerHealth: {fileID: 440188468}
 --- !u!212 &188449434
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4217,6 +4220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  healingSpeed: 0
 --- !u!61 &432933696
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4522,7 +4526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367d198897321d04e9848b5aff8341ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 0
+  attackCooldown: 1
   swipePoint: {fileID: 586515111}
   swipes:
   - {fileID: 188449428}
@@ -4540,6 +4544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  healingSpeed: 0.1
 --- !u!1 &446645145
 GameObject:
   m_ObjectHideFlags: 0
@@ -25043,6 +25048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  healingSpeed: 0
 --- !u!1 &831913828
 GameObject:
   m_ObjectHideFlags: 0
@@ -26360,6 +26366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  healingSpeed: 0
 --- !u!50 &1220072173
 Rigidbody2D:
   serializedVersion: 4
