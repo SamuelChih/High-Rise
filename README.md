@@ -6,7 +6,7 @@ A cool game for CS4700
 - Austin Martinez 
   - (insert contribution here)
 - Samuel Chih 
-  - Created background, Main menu, scene change, keybinging, and Debug
+  - Created background, Main menu, scene change, keybinding, and Debug
 - Wesley Kwan 
   - (insert contribution here)
 - Selim Frljuckic
