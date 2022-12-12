@@ -17,4 +17,4 @@ A cool game for CS4700
   
 - Selim Frljuckic
   - Created Wall Jump mechanic used to scale through the level + minor level designs(using tilemapping/sprite editor) 
-  + some additional tweaks/safety nets for the level
++ some additional tweaks/safety nets for the level
