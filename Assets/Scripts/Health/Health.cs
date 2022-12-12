@@ -62,12 +62,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && GetComponent<PlayerMovement>() != null)
-            TakeDamage(1);
-    }
-
     public void StartHealing()
     {
         if (!isHealing && currentHealth < startingHealth)
@@ -95,6 +89,4 @@ public class Health : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = true;
         isHealing = false;
     }
-
-    
 }

@@ -5,16 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class FinishLine : MonoBehaviour
 {
-    [SerializeField] private GameObject highscoreTable;
+    [SerializeField] private Stopwatch stopwatch;
+    [SerializeField] private HighscoreTable highscoreTable;
+    [SerializeField] private InputWindow inputWindow;
+
+    private void Awake()
+    {
+        stopwatch.StartStopwatch();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            GameObject.Find("Enemies").SetActive(false);
+            stopwatch.StopStopwatch();
+
             collision.transform.GetComponent<PlayerMovement>().enabled = false;
             collision.transform.GetComponent<PlayerAttack>().enabled = false;
-            highscoreTable.SetActive(true);
+
+            highscoreTable.gameObject.SetActive(true);
+
+            inputWindow.Show("Enter Name", "", "QWERTYUIOPASDFGHJKLZXCVBNM", 3, (string nameText) => {
+                highscoreTable.AddHighScoreEntry(stopwatch.GetCurrentTime(), nameText);
+                highscoreTable.ShowHighscores();
+            });
         }
     }
 }

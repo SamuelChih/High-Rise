@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class HighscoreTable : MonoBehaviour
 {
@@ -9,25 +10,34 @@ public class HighscoreTable : MonoBehaviour
     private Transform entryTemplate;
     private RectTransform templateRectTransform;
     private List<Transform> highscoreEntryTransformList;
+    private Highscores highscores;
 
     private float templateHeight = 40f;
 
     private void Awake()
     {
+        PlayerPrefs.SetString("highscoreTable", "{}");
+        PlayerPrefs.Save();
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
         templateRectTransform = entryTemplate.GetComponent<RectTransform>();
 
         entryTemplate.gameObject.SetActive(false);
 
-        string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+        // string jsonString = PlayerPrefs.GetString("highscoreTable");
+        // highscores = JsonUtility.FromJson<Highscores>(jsonString);
+    }
 
+    public void ShowHighscores()
+    {
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        highscores = JsonUtility.FromJson<Highscores>(jsonString);
+        
         for (int i = 0; i < highscores.highscoreEntryList.Count; i++)
         {
             for (int j = i + 1; j < highscores.highscoreEntryList.Count; j++)
             {
-                if (highscores.highscoreEntryList[j].score > highscores.highscoreEntryList[i].score)
+                if (highscores.highscoreEntryList[j].score < highscores.highscoreEntryList[i].score)
                 {
                     HighscoreEntry temp = highscores.highscoreEntryList[i];
                     highscores.highscoreEntryList[i] = highscores.highscoreEntryList[j];
@@ -62,8 +72,9 @@ public class HighscoreTable : MonoBehaviour
 
         entryTransform.Find("posText").GetComponent<Text>().text = rankString;
 
-        int score = highscoreEntry.score;
-        entryTransform.Find("scoreText").GetComponent<Text>().text = score.ToString();
+        float score = highscoreEntry.score;
+        TimeSpan time = TimeSpan.FromSeconds(score);
+        entryTransform.Find("scoreText").GetComponent<Text>().text = time.ToString(@"mm\:ss\:fff");
 
         string name = highscoreEntry.name;
         entryTransform.Find("nameText").GetComponent<Text>().text = name;
@@ -96,7 +107,7 @@ public class HighscoreTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
-    private void AddHighScoreEntry(int score, string name)
+    public void AddHighScoreEntry(float score, string name)
     {
         HighscoreEntry highscoreEntry = new HighscoreEntry { score = score, name = name };
 
@@ -118,7 +129,7 @@ public class HighscoreTable : MonoBehaviour
     [System.Serializable]
     private class HighscoreEntry
     {
-        public int score;
+        public float score;
         public string name;
     }
 

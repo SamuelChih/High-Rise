@@ -61,5 +61,4 @@ public class PlayerAttack : MonoBehaviour
     {
         Attack(true);
     }
-    
 }
