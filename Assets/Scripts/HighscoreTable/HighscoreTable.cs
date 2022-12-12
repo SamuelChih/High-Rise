@@ -16,8 +16,8 @@ public class HighscoreTable : MonoBehaviour
 
     private void Awake()
     {
-        // PlayerPrefs.SetString("highscoreTable", "{}");
-        // PlayerPrefs.Save();
+        PlayerPrefs.SetString("highscoreTable", "{}");
+        PlayerPrefs.Save();
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
         templateRectTransform = entryTemplate.GetComponent<RectTransform>();
