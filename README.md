@@ -16,5 +16,4 @@ A cool game for CS4700
     and score system (stopwatch, highscore table, and name input)
   
 - Selim Frljuckic
-  - Created Wall Jump mechanic used to scale through the level + minor level designs(using tilemapping/sprite editor) 
-+ some additional tweaks/safety nets for the level
+  - Created Wall Jump mechanic used to scale through the level + minor level designs(using tilemapping/sprite editor)+ some additional tweaks/safety nets for the level
