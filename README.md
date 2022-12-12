@@ -12,7 +12,8 @@ A cool game for CS4700
   - Created background, Main menu, scene change, keybinding, and Debug
   
 - Wesley Kwan 
-  - (insert contribution here)
+  - Created the strength bar and connected it to the wall jump mechanic, player "K" attack (healing attack)
+    and score system (stopwatch, highscore table, and name input)
   
 - Selim Frljuckic
   - Created Wall Jump mechanic used to scale through the level + minor level designs/tweaks and safety nets
