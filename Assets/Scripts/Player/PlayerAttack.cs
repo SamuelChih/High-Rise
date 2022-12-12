@@ -13,8 +13,7 @@ public class PlayerAttack : MonoBehaviour
     private Health playerHealth;
     private float cooldownTimer = Mathf.Infinity;
 
-    PlayerControl controls;
-
+    [SerializeField] PlayerControl controls;
     private void Awake()
     {
         anim = GetComponent<Animator>();
