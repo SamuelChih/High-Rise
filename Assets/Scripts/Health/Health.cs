@@ -8,9 +8,6 @@ public class Health : MonoBehaviour
     public float currentHealth { get; private set; }
 
     private Animator anim;
-    // private PlayerMovement playerMovement;
-    // private PlayerAttack playerAttack;
-    // private Health playerHealth;
     private bool isHealing;
     private bool dead;
 
@@ -19,9 +16,6 @@ public class Health : MonoBehaviour
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         isHealing = false;
-        // playerMovement = GetComponent<PlayerMovement>();
-        // playerAttack = GetComponent<PlayerAttack>();
-        // playerHealth = GetComponent<Health>();
     }
 
     public void TakeDamage(float _damage)
