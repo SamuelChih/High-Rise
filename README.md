@@ -6,8 +6,8 @@ A cool game for CS4700
 - Austin Martinez 
   - (insert contribution here)
 - Samuel Chih 
-  - Creates background, Main menu, scene change, keybinging, and Debug
+  - Created background, Main menu, scene change, keybinging, and Debug
 - Wesley Kwan 
   - (insert contribution here)
 - Selim Frljuckic
-  - created Wall Jump mechanic used to scale through the level + minor level designs/tweaks and safety nets
+  - Created Wall Jump mechanic used to scale through the level + minor level designs/tweaks and safety nets
