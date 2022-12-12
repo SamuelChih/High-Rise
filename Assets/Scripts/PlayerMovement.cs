@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Gameplay.Jump.performed += ctx => Jump();
         //controls.Gameplay.Moving.performed += ctx => horizontalInput = ctx.ReadValue<float>();
         controls.Gameplay.Moving.canceled += ctx => horizontalInput = 0;
+        controls.Gameplay.MainMenu.performed += ctx => SceneManager.LoadScene("Main Menu");
+
     }
 
     private void Update()
@@ -122,5 +124,9 @@ public class PlayerMovement : MonoBehaviour
     void OnDisable()
     {
         controls.Gameplay.Disable();
+    }
+    public void NextScene()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

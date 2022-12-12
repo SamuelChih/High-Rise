@@ -71,6 +71,15 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4619d09-ed77-48b3-8ef0-0b7d62ef47f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,28 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38ce8202-69d5-4aa2-8ac0-19ccefd80c46"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bcdbf16-79a0-47c1-b2eb-2a29422853c0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +172,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         m_Gameplay_Charge = m_Gameplay.FindAction("Charge", throwIfNotFound: true);
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_HealAttack = m_Gameplay.FindAction("HealAttack", throwIfNotFound: true);
+        m_Gameplay_MainMenu = m_Gameplay.FindAction("MainMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +237,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Charge;
     private readonly InputAction m_Gameplay_Attack;
     private readonly InputAction m_Gameplay_HealAttack;
+    private readonly InputAction m_Gameplay_MainMenu;
     public struct GameplayActions
     {
         private @PlayerControl m_Wrapper;
@@ -214,6 +247,7 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         public InputAction @Charge => m_Wrapper.m_Gameplay_Charge;
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputAction @HealAttack => m_Wrapper.m_Gameplay_HealAttack;
+        public InputAction @MainMenu => m_Wrapper.m_Gameplay_MainMenu;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -238,6 +272,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @HealAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHealAttack;
                 @HealAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHealAttack;
                 @HealAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHealAttack;
+                @MainMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMainMenu;
+                @MainMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMainMenu;
+                @MainMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMainMenu;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -257,6 +294,9 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
                 @HealAttack.started += instance.OnHealAttack;
                 @HealAttack.performed += instance.OnHealAttack;
                 @HealAttack.canceled += instance.OnHealAttack;
+                @MainMenu.started += instance.OnMainMenu;
+                @MainMenu.performed += instance.OnMainMenu;
+                @MainMenu.canceled += instance.OnMainMenu;
             }
         }
     }
@@ -268,5 +308,6 @@ public partial class @PlayerControl : IInputActionCollection2, IDisposable
         void OnCharge(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnHealAttack(InputAction.CallbackContext context);
+        void OnMainMenu(InputAction.CallbackContext context);
     }
 }
