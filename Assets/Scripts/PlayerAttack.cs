@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -12,20 +13,26 @@ public class PlayerAttack : MonoBehaviour
     private Health playerHealth;
     private float cooldownTimer = Mathf.Infinity;
 
+    PlayerControl controls;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<Health>();
+        controls = new PlayerControl();
+        controls.Gameplay.Attack.performed += ctx => NormalAttack();
+        controls.Gameplay.HealAttack.performed += ctx => HealAttack();
+        
     }
 
     private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L) && cooldownTimer > attackCooldown) // && playerMovement.canAttack())
+    {   
+        if(Input.GetKeyDown(KeyCode.L)||Input.GetKeyDown(KeyCode.JoystickButton3) && cooldownTimer > attackCooldown) // && playerMovement.canAttack())
         {
             NormalAttack();
         }
-        if(Input.GetKeyDown(KeyCode.K) && cooldownTimer > attackCooldown) // && playerMovement.canAttack())
+        if(Input.GetKeyDown(KeyCode.K)||Input.GetKeyDown(KeyCode.JoystickButton1) && cooldownTimer > attackCooldown) // && playerMovement.canAttack())
         {
             HealAttack();
         }

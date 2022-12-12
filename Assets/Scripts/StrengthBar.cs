@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class StrengthBar : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class StrengthBar : MonoBehaviour
     [SerializeField] private float maxStrength;
     [SerializeField] private float barChangeSpeed;
     [SerializeField] private float coolDown;
+
+    [SerializeField] PlayerControl controls;
 
     private bool strengthBarOn;
     private bool isReleased;
@@ -27,16 +30,26 @@ public class StrengthBar : MonoBehaviour
         currentStrength = 0;
         wait = coolDown;
         StartCoroutine(UpdateStrengthBar());
+        
+    }
+
+      private void Awake()
+    {
+        controls = new PlayerControl();
+        controls.Gameplay.Charge.performed += ctx => isReleased = false;
+        controls.Gameplay.Charge.canceled += ctx => isReleased = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("j"))
+
+
+        if (Input.GetKey("j")||Input.GetKey(KeyCode.JoystickButton4))
         {
             isReleased = false;
         }
-        if (Input.GetKeyUp("j"))
+        if (Input.GetKeyUp("j")||Input.GetKeyUp(KeyCode.JoystickButton4))
         {
             if (ticOne)
             {
@@ -53,8 +66,8 @@ public class StrengthBar : MonoBehaviour
                 reset();
             }
         }
+        
     }
-
     IEnumerator UpdateStrengthBar()
     {
         while (strengthBarOn)

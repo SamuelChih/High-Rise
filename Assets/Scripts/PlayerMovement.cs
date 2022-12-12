@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private StrengthBar strengthBar;
-
+    [SerializeField] PlayerControl controls;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -29,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        controls = new PlayerControl();
+        controls.Gameplay.Jump.performed += ctx => Jump();
+        //controls.Gameplay.Moving.performed += ctx => horizontalInput = ctx.ReadValue<float>();
+        controls.Gameplay.Moving.canceled += ctx => horizontalInput = 0;
     }
 
     private void Update()
@@ -109,5 +114,13 @@ public class PlayerMovement : MonoBehaviour
     {
         return isGrounded() && !onWall(new Vector2(transform.localScale.x, 0));
     }
-   
+   void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+
+    void OnDisable()
+    {
+        controls.Gameplay.Disable();
+    }
 }
