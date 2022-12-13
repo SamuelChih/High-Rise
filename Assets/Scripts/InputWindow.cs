@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InputWindow : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class InputWindow : MonoBehaviour
     {
         titleText = transform.Find("titleText").GetComponent<Text>();
         inputField = transform.Find("inputField").GetComponent<TMP_InputField>();
-
+        
         Hide();
     }
 
@@ -24,6 +25,11 @@ public class InputWindow : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Submit();
+        }
+        
+        if(Input.GetKeyDown(KeyCode.KeypadEnter)||Input.GetKeyDown(KeyCode.JoystickButton3)) // && playerMovement.canAttack())
+        {
+            SceneManager.LoadScene("Main Menu");
         }
     }
 

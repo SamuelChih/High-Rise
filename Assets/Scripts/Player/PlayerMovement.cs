@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal")*0.80f;
 
         //Flip player when moving left-right
 

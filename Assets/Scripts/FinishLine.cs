@@ -11,7 +11,14 @@ public class FinishLine : MonoBehaviour
 
     private void Awake()
     {
+        
         stopwatch.StartStopwatch();
+        
+        if(Input.GetKeyDown(KeyCode.KeypadEnter)||Input.GetKeyDown(KeyCode.JoystickButton3)) // && playerMovement.canAttack())
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

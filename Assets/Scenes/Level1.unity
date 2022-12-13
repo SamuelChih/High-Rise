@@ -5696,10 +5696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956be1a26737682459093d028a324792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
-  jumpspeed: 4
+  speed: 2
+  jumpspeed: 4.5
   gravityScale: 1
-  drag: 0
+  drag: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
